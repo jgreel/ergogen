@@ -1,0 +1,159 @@
+points:
+  key:
+    padding: cy
+    spread: cx
+  zones:
+    matrix:
+      rows:
+        bottom:
+          key:
+            row_net: P9
+        home:
+          key:
+            row_net: P8
+        top:
+          key:
+            row_net: P7
+        num:
+          key:
+            row_net: P6
+      columns:
+        outer:
+          key:
+            column_net: P1
+            splay: 13
+        pinky:
+          key:
+            column_net: P0
+
+        ring:
+          key:
+            column_net: P2
+            stagger: 9
+            splay: -8
+            origin: [-cx/2,-cy/2]
+
+        middle:
+          key:
+            column_net: P3
+            stagger: 6
+            splay: -5
+            origin: [-cx/2,-cy/2]
+
+        index:
+          key:
+            column_net: P4
+            stagger: -9
+
+        inner:
+          key:
+            column_net: P5
+            stagger: -3
+
+    modrow:
+      anchor:
+        ref: matrix_outer_bottom
+        shift: [0,-cy]
+      rows:
+        mod:
+          key:
+            row_net: P10
+      columns:
+        outer:
+          key:
+            column_net: P1
+        pinky:
+          key:
+            column_net: P0
+        ring:
+          key:
+            column_net: P2
+
+    thumb1:
+      anchor:
+        ref: matrix_middle_bottom
+        shift: [12,-28]
+      rows:
+        mod:
+          key:
+            row_net: P10
+      columns:
+        middle:
+          key:
+            column_net: P3
+            splay: -6
+        index:
+          key:
+            column_net: P4
+            splay: -7
+            origin: [-cx/2, -cy/2]
+        inner:
+          key:
+            column_net: P5
+            spread: cy
+            stagger: -5
+            splay: -7
+            origin: [-cx/2, -cy/2]
+            rotate: 90
+        thumb1:
+          key:
+            column_net: 16
+            spread: cy/2+cx/2
+            stagger: -5
+          rows:
+            bottom:
+              key:
+                row_net: P9
+pcbs:
+  hilltop:
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          from: "{{row_net}}"
+          to: "{{column_net}}"
+          keycaps: true
+          reverse: true
+          hotswap: true
+      diodes:
+        what: diode
+        where: true
+        adjust:
+          shift: [0, -4.7]
+        params:
+          from: "{{row_net}}"
+          to: "{{colrow}}"
+      promicro:
+        what: promicro_pretty
+        where:
+          ref: matrix_inner_num
+          shift: [19, -10]
+          rotate: -90
+      powerswitch:
+        what: slider
+        where:
+          ref: matrix_inner_num
+          shift: [26, -30]
+          rotate: 270
+        params:
+          from: RAW
+          to: BAT
+      resetbutton:
+        what: button
+        where:
+          ref: matrix_inner_num
+          shift: [26, -40]
+          rotate: 270
+        params:
+          from: RST
+          to: GND
+      bat:
+        what: jstph
+        where:
+          ref: matrix_inner_num
+          shift: [12, -30]
+          rotate: 90
+        params:
+          pos: BAT
+          neg: GND
