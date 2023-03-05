@@ -97,7 +97,7 @@ points:
             rotate: 90
         thumb1:
           key:
-            column_net: 16
+            column_net: P16
             spread: cy/2+cx/2
             stagger: -5
           rows:
